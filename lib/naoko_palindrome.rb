@@ -1,16 +1,23 @@
 require "naoko_palindrome/version"
 
-class String
-
+module NaokoPalindrome
   # Returns true for a palindrome, false otherwise.
   def palindrome?
     processed_content == processed_content.reverse
   end
 
   private
-
     # Returns content for palindrome testing.
     def processed_content
-      self.scan(/[a-z]/i).join.downcase
+      self.to_s.scan(/[a-z\d]/i).join.downcase
     end
+end
+
+
+class String
+  include NaokoPalindrome
+end
+
+class Integer
+  include NaokoPalindrome
 end
